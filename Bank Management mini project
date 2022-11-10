@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <time.h>
+char name[20];
+int dip_amt, amt = 10000, acc_no, ac, count = 0;
+int trans_amt;
+int with_amt,cc,ch;
+
+void deposit_money();
+void withdraw_money();
+void transfer_money();
+void checkDetail();
+void LastDetail();
+void transaction_details();
+void user();
+void heading();
+    void heading()
+{
+    printf("\t\t\t\t***Bank Management System***\n");
+
+}
+
+void back();
+
+void divider()
+{
+    for (int i = 0; i < 50; i++)
+    {
+        printf("-");
+    }
+}
