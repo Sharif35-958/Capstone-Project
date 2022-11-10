@@ -30,4 +30,92 @@ void divider()
         printf("-");
     }
 }
+int main()
+{
+    int cc;
+    heading();
+
+    FILE *ptr = fopen("userAccount.txt", "a");
+
+    int ch;
+    printf("\nEnter your name : \n");
+    scanf("%s",&name);
+    fprintf(ptr, "\nName : %s\n", name);
+    printf("Enter your account no. : ");
+    scanf("%d", &acc_no);
+    fprintf(ptr, "Account no. : %d\n", acc_no);
+
+    fclose(ptr);
+
+
+
+    printf("\n1.User Panel\n");
+    printf("2.Admin Panel for banking detail\n");
+    printf("\nEnter your choice :\n");
+    scanf("%d", &cc);
+    switch(cc)
+    {
+    case 1:
+        system("cls");
+        user();
+        break;
+    case 2:
+        system("cls");
+        Admin_panel();
+        break;
+    default:
+        printf("Invalid Choice.\n");
+    }
+    while (1)
+    {
+        user();
+        printf("\nEnter your choice :\n");
+        scanf("%d", &ch);
+        switch (ch)
+        {
+        case 1:
+            system("cls");
+            deposit_money();
+            break;
+        case 2:
+            system("cls");
+            withdraw_money();
+            break;
+
+        case 3:
+            system("cls");
+            transfer_money();
+            break;
+
+        case 4:
+            system("cls");
+            checkDetail();
+            break;
+
+        case 5:
+            transaction_details();
+            break;
+        case 6:
+
+            system("cls");
+            back();
+            break;
+
+
+        case 7:
+
+            system("cls");
+            LastDetail();
+            exit(0);
+
+
+        default:
+            printf("****Invalid choice****");
+        }
+
+    }
+
+
+    return 0;
+}
 
