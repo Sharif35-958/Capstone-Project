@@ -1,9 +1,17 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
 #include <conio.h>
 #include <time.h>
+
+struct user {
+	char phone[50];
+	char ac[50];
+	char password[50];
+
+};
 char name[20];
-int dip_amt, amt = 10000, acc_no, ac, count = 0;
+int dip_amt, amt = 10000, acc_no, phone,ac, count = 0;
 int trans_amt;
 int with_amt,cc,ch;
 
@@ -14,66 +22,95 @@ void checkDetail();
 void LastDetail();
 void transaction_details();
 void user();
-void heading();
-    void heading()
+void back();
+void user1()
 {
-    printf("\t\t\t\t***Bank Management System***\n");
+
+
+    system("cls");
+    divider();
+    printf("\n\n\t\t\t\t\t\tMENU\n");
+
+    divider();
+    printf("\n\n\t\t\t\t\t1.Deposit Money\n");
+    printf("\n\t\t\t\t\t2.Withdraw Money\n");
+    printf("\n\t\t\t\t\t3.Transfer Money\n");
+    printf("\n\t\t\t\t\t4.Account details\n");
+    printf("\n\t\t\t\t\t5.Transaction details\n");
+    //printf("6.Back\n");
+    printf("\n\t\t\t\t\t6.Exit\n");
+    divider();
 
 }
-
-void back();
-
 void divider()
 {
+    printf("\n\t\t\t\t\t");
     for (int i = 0; i < 50; i++)
     {
         printf("-");
     }
 }
-int main()
-{
-    int cc;
-    heading();
 
-    FILE *ptr = fopen("userAccount.txt", "a");
+int main(){
+	struct user user,usr;
+	char filename[50],phone[50],password[50],phone2[50];
+	FILE *fp,*fptr;
+	int opt,choice;
+	int amount;
+	char cont = 'y';
+	jump:
+	printf("\n\t\t\t\t\t BANKING MANAGEMENT SYSTEM \t\t\t\t\t");
+	printf("\n\n\t\t\t\t\ 1.Register your account\t\t\t\t");
+	printf("\n\n\t\t\t\t\ 2.Login to your account\t\t\t\t");
 
-    int ch;
-    printf("\nEnter your name : \n");
-    scanf("%s",&name);
-    fprintf(ptr, "\nName : %s\n", name);
-    printf("Enter your account no. : ");
-    scanf("%d", &acc_no);
-    fprintf(ptr, "Account no. : %d\n", acc_no);
+	printf("\n\n\t\t\t\tPlease enter your choice:\t");
+	scanf("\n\t\t\t\t\t%d",&opt);
+	if(opt == 1){
+		system("cls");
+		printf("\n\t\t\t\t\tEnter your account number:\t");
+		scanf("\n\t\t\t\t\t%s",user.ac);
+		printf("\n\t\t\t\t\tEnter your phone number:\t");
+		scanf("\n\t\t\t\t\t%s",user.phone);
+		printf("\n\t\t\t\t\tEnter your new password:\t");
+		scanf("\n\t\t\t\t\t%s",user.password);
 
-    fclose(ptr);
+		stpcpy(filename,user.phone);
+		fp=fopen(strcat(filename,".dat"),"w");
+		fwrite(&user,sizeof(user),1,fp);
+		if(fwrite != 0){
+			printf("\n\t\t\t\t\tSuccesfully registered");
+			goto jump;
+		}
+	}
+	else if(opt == 2){
+		system("cls");
+		printf("\n\n\t\t\t\t\tPhone No.:\t");
+		scanf("\n\t\t\t\t\t%s",phone);
+		printf("\n\t\t\t\t\tPassword:\t");
+		scanf("\n\t\t\t\t\t%s",password);
+		fp = fopen(strcat(phone,".dat"),"r");
+		if(fp == NULL) printf("Account number not registered");
+		else {
+			fread(&user,sizeof(struct user),1,fp);
+			fclose(fp);
+			if(!strcmp(password,user.password)){
+				while(cont == 'y'){
+				 system("cls");
 
 
+     printf("\n\t\t\t\t\tMENU\n");
 
-    printf("\n1.User Panel\n");
-    printf("2.Admin Panel for banking detail\n");
-    printf("\nEnter your choice :\n");
-    scanf("%d", &cc);
-    switch(cc)
-    {
-    case 1:
-        system("cls");
-        user();
-        break;
-    case 2:
-        system("cls");
-        Admin_panel();
-        break;
-    default:
-        printf("Invalid Choice.\n");
-    }
-    while (1)
-    {
-        user();
-        printf("\nEnter your choice :\n");
-        scanf("%d", &ch);
-        switch (ch)
-        {
-        case 1:
+    divider();
+    printf("\n\t\t\t\t\t1.Deposit Money\n");
+    printf("\n\t\t\t\t\t2.Withdraw Money\n");
+    printf("\n\t\t\t\t\t3.Transfer Money\n");
+    printf("\n\t\t\t\t\t4.Account details\n");
+    printf("\n\t\t\t\t\t5.Transaction details\n");
+    //printf("6.Back\n");
+    printf("\n\t\t\t\t\t6.Exit\n");
+				scanf("\n\t\t\t\t\t%d",&choice);
+				switch(choice){
+					 case 1:
             system("cls");
             deposit_money();
             break;
@@ -95,14 +132,10 @@ int main()
         case 5:
             transaction_details();
             break;
+
+
+
         case 6:
-
-            system("cls");
-            back();
-            break;
-
-
-        case 7:
 
             system("cls");
             LastDetail();
@@ -110,16 +143,39 @@ int main()
 
 
         default:
-            printf("****Invalid choice****");
+            printf("\n\t\t\t\t\t****Invalid choice****");
         }
+				printf("\n\n\t\t\t\t\tDo you want to continue?[y/n]:\t");
+				scanf("\n\t\t\t\t\t%s",&cont);
+				}
+			}
+			else {
+				printf("\n\t\t\t\t\tInvalid password");
+			}
+		}
+		printf("\n\n\t\t\t\t\t***Thank you for banking ***\n\n");
+	}
 
-    }
-
-
-    return 0;
+	return 0;
 }
-
 void deposit_money()
 {
 
+    time_t tm;
+    time(&tm);
+    FILE *ptr = fopen("userAccount.txt", "w");
+    printf("\n\t\t\t\t\t*****DEPOSITING MONEY*****\n");
+    divider();
+    printf("\n\n\t\t\t\t\tEnter the amount you want to deposit:");
+    scanf("%d", &dip_amt);
+    amt += dip_amt;
+    printf("\n\t\t\t\t\t****Money Deposited****\n");
+    printf("\n\t\t\t\t\tNow balance : %d\n", amt);
+    fprintf(ptr, "\n\n\t\t\t\t\tTk%d had been deposited to your account \n", dip_amt);
+    fprintf(ptr, "\n\t\t\t\t\tDate/Time of transaction :  %s\n", ctime(&tm));
+    count++;
+
+    fclose(ptr);
+    printf("\n\t\t\t\t\tPress any key....\n");
+    getch();
 }
