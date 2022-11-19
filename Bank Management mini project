@@ -210,3 +210,57 @@ void transfer_money()
     printf("\n\t\t\t\t\tPress any key....\n");
     getch();
 }
+void checkDetail()
+{
+
+    printf("\n\t\t\t\t\tACCOUNT DETAILS\n");
+    divider();
+
+    printf("\n\n\t\t\t\t\tName : %s\n", phone);
+    printf("\n\t\t\t\t\tAccount No. : %s\n", ac);
+    printf("\n\t\t\t\t\tTotal balance = %d\n ", amt);
+    printf("\n\n\t\t\t\t\t%d transactions have been made from your account \n",count);
+    printf("\n\t\t\t\t\tPress any key");
+    getch();
+}
+void transaction_details()
+{
+
+
+
+    system("cls");
+
+    FILE *ptr;
+    ptr = fopen("userAccount.txt", "r");
+    char c = fgetc(ptr);
+    if (c == EOF)
+    {
+        printf("\n\t\t\t\t\tTRANSACTION DETAILS\n");
+        divider();
+        printf("\n\n\t\t\t\t\t*******NO RECENT TRANSACTION*******\n");
+    }
+    else
+    {
+        printf("\n\t\t\t\t\tTRANSACTION DETAILS\n");
+        divider();
+        printf("\n\n\t\t\t\t\t%d transactions have been made from your account \n", count);
+        while (c != EOF) // EOF=End of file
+        {
+            printf("%c", c);
+            c = fgetc(ptr);
+        }
+    }
+
+    getch();
+}
+void LastDetail()
+{
+    printf("\n\t\t\t\t\tACCOUNT DETAILS\n");
+    divider();
+    printf("\n\n\t\t\t\t\tName : %s\n", name);
+    printf("\n\t\t\t\t\tAccount No. : %d\n", acc_no);
+    printf("\n\t\t\t\t\tTotal balance = %d\n ", amt);
+
+    printf("\n\n\n\t\t\t\t\tPress any key to exit.....");
+    getch();
+}
