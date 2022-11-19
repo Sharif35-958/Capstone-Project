@@ -179,3 +179,34 @@ void deposit_money()
     printf("\n\t\t\t\t\tPress any key....\n");
     getch();
 }
+void transfer_money()
+{
+
+    time_t tm;
+    time(&tm);
+    FILE *ptr = fopen("userAccount.txt", "w");
+    printf("\n\t\t\t\t\t*****TRANSFERRING MONEY*****\n");
+    divider();
+
+    printf("\n\n\t\t\t\t\tEnter the account no. in which you want to transfer the money : ");
+    scanf("\n\t\t\t\t\t%d", &ac);
+    printf("\n\n\t\t\t\t\tEnter the amount you want to transfer: ");
+    scanf("\n\t\t\t\t\t%d", &trans_amt);
+
+    if (amt < trans_amt)
+    {
+        printf("\n\t\t\t\t\t****You have not sufficient balance****\n");
+    }
+    else
+    {
+        amt = amt - trans_amt;
+        printf("\n\t\t\t\t\t****Money Transferred****\n");
+        printf("\n\t\t\t\t\tCurrent balance : %d\n", amt);
+        fprintf(ptr, "\n\n\t\t\t\t\tTk%d had been transferred from your account to %d\n", trans_amt, ac);
+        fprintf(ptr, "\n\t\t\t\t\tDate/Time of transaction :  %s\n", ctime(&tm));
+        count++;
+    }
+    fclose(ptr);
+    printf("\n\t\t\t\t\tPress any key....\n");
+    getch();
+}
