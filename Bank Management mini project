@@ -21,7 +21,7 @@ void transfer_money();
 void checkDetail();
 void LastDetail();
 void transaction_details();
-void user();
+
 void back();
 
 void divider()
@@ -34,8 +34,7 @@ void divider()
 }
 
 int main(){
-	
-	system("color E0");
+    system("color E0");
 	struct user user,usr;
 	char filename[50],phone[50],password[50],phone2[50];
 	FILE *fp,*fptr;
@@ -84,7 +83,7 @@ int main(){
 		printf("\n\t\t\t\t\tPassword:\t");
 		scanf("\n\t\t\t\t\t%s",password);
 		fp = fopen(strcat(phone,".dat"),"r");
-		if(fp == NULL) printf("Account number not registered");
+		if(fp == NULL) printf("Phone number not registered");
 		else {
 			fread(&user,sizeof(struct user),1,fp);
 			fclose(fp);
@@ -174,6 +173,42 @@ void deposit_money()
     printf("\n\t\t\t\t\tPress any key....\n");
     getch();
 }
+
+
+
+void withdraw_money()
+{
+
+    time_t tm;
+    time(&tm);
+    FILE *ptr = fopen("userAccount.txt", "w");
+    printf("\n\t\t\t\t\t*****WITHDRAWING MONEY*****\n");
+    divider();
+
+    printf("\n\n\t\t\t\t\tEnter the amount you want to withdraw:");
+    scanf("%d", &with_amt);
+
+    if (amt < with_amt)
+    {
+        printf("\n\t\t\t\t\t****Insufficient balance****\n");
+    }
+    else
+    {
+        amt = amt - with_amt;
+        printf("\n\t\t\t\t\t*****Money withdrawn*****\n");
+        printf("\n\t\t\t\t\tCurrent balance : %d\n", amt);
+        fprintf(ptr, "\n\n\t\t\t\t\tTk%d had been withdrawn from your account \n", with_amt);
+        fprintf(ptr, "\n\t\t\t\t\tDate/Time of transaction :  %s\n", ctime(&tm));
+        count++;
+    }
+    fclose(ptr);
+    printf("\n\t\t\t\t\tPress any key....\n");
+
+    getch();
+}
+
+
+
 void transfer_money()
 {
 
@@ -205,17 +240,19 @@ void transfer_money()
     printf("\n\t\t\t\t\tPress any key....\n");
     getch();
 }
+
+
+
 void checkDetail()
 {
 
-    printf("\n\t\t\t\t\tACCOUNT DETAILS\n");
+     printf("\n\t\t\t\t\tACCOUNT DETAILS\n");
     divider();
-
-    printf("\n\n\t\t\t\t\tName : %s\n", phone);
-    printf("\n\t\t\t\t\tAccount No. : %s\n", ac);
+    printf("\n\n\t\t\t\t\tName : %s\n", name);
+    printf("\n\t\t\t\t\tAccount No. : %d\n", acc_no);
     printf("\n\t\t\t\t\tTotal balance = %d\n ", amt);
-    printf("\n\n\t\t\t\t\t%d transactions have been made from your account \n",count);
-    printf("\n\t\t\t\t\tPress any key");
+
+    printf("\n\n\n\t\t\t\t\tPress any key to exit.....");
     getch();
 }
 void transaction_details()
