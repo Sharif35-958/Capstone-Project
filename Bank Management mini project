@@ -58,6 +58,24 @@ int main(){
 	int opt,choice;
 	int amount;
 	char cont = 'y';
+	system("color E0");
+	struct user user,usr;
+	char filename[50],phone[50],password[50],phone2[50];
+	FILE *fp,*fptr;
+	int opt,choice;
+	int amount;
+	char cont = 'y';
+	FILE *ptr = fopen("userAccount.txt", "w");
+
+    int ch;
+    printf("\n\t\t\t\t\tEnter your name : ");
+    scanf("%s",&name);
+    fprintf(ptr, "\n\t\t\t\t\tName : %s\n", name);
+    printf("\n\t\t\t\t\tEnter your account no. : ");
+    scanf("%d", &acc_no);
+    fprintf(ptr, "\n\t\t\t\t\tAccount no. : %d", acc_no);
+
+    fclose(ptr);
 	jump:
 	printf("\n\t\t\t\t\t BANKING MANAGEMENT SYSTEM \t\t\t\t\t");
 	printf("\n\n\t\t\t\t\ 1.Register your account\t\t\t\t");
