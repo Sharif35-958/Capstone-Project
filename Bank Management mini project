@@ -23,25 +23,7 @@ void LastDetail();
 void transaction_details();
 void user();
 void back();
-void user1()
-{
 
-
-    system("cls");
-    divider();
-    printf("\n\n\t\t\t\t\t\tMENU\n");
-
-    divider();
-    printf("\n\n\t\t\t\t\t1.Deposit Money\n");
-    printf("\n\t\t\t\t\t2.Withdraw Money\n");
-    printf("\n\t\t\t\t\t3.Transfer Money\n");
-    printf("\n\t\t\t\t\t4.Account details\n");
-    printf("\n\t\t\t\t\t5.Transaction details\n");
-    //printf("6.Back\n");
-    printf("\n\t\t\t\t\t6.Exit\n");
-    divider();
-
-}
 void divider()
 {
     printf("\n\t\t\t\t\t");
