@@ -44,7 +44,8 @@ int main(){
 	FILE *ptr = fopen("userAccount.txt", "w");
 
     int ch;
-    printf("\n\t\t\t\t\tEnter your name : ");
+    printf("\n\t\t\t\t\t****BANKING MANAGEMENT SYSTEM****\t\t\t\t\t");
+    printf("\n\n\t\t\t\t\tEnter your name : ");
     scanf("%s",&name);
     fprintf(ptr, "\n\t\t\t\t\tName : %s\n", name);
     printf("\n\t\t\t\t\tEnter your account no. : ");
@@ -52,13 +53,16 @@ int main(){
     fprintf(ptr, "\n\t\t\t\t\tAccount no. : %d", acc_no);
 
     fclose(ptr);
+    system("cls");
 	jump:
-	printf("\n\t\t\t\t\t BANKING MANAGEMENT SYSTEM \t\t\t\t\t");
+
+    printf("\n\t\t\t\t\t****BANKING MANAGEMENT SYSTEM****\t\t\t\t\t");
 	printf("\n\n\t\t\t\t\ 1.Register your account\t\t\t\t");
 	printf("\n\n\t\t\t\t\ 2.Login to your account\t\t\t\t");
 
 	printf("\n\n\t\t\t\tPlease enter your choice:\t");
 	scanf("\n\t\t\t\t\t%d",&opt);
+	system("cls");
 	if(opt == 1){
 		system("cls");
 		printf("\n\t\t\t\t\tEnter your account number:\t");
@@ -72,7 +76,8 @@ int main(){
 		fp=fopen(strcat(filename,".dat"),"w");
 		fwrite(&user,sizeof(user),1,fp);
 		if(fwrite != 0){
-			printf("\n\t\t\t\t\tSuccesfully registered");
+			printf("\n\t\t\t\t\tSuccesfully registered\n\n\n");
+
 			goto jump;
 		}
 	}
@@ -87,7 +92,8 @@ int main(){
 		else {
 			fread(&user,sizeof(struct user),1,fp);
 			fclose(fp);
-			if(!strcmp(password,user.password)){
+			if(!strcmp(password,user.password))
+                {
 				while(cont == 'y'){
 				 system("cls");
 
