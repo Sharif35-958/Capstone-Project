@@ -6,12 +6,14 @@
 
 struct user {
 	char phone[50];
-	char ac[50];
+
 	char password[50];
+
 
 };
 char name[20];
-int dip_amt, amt = 10000, acc_no, phone,ac, count = 0;
+char ac[50];
+int dip_amt, amt = 10000, phone, count = 0,acc;
 int trans_amt;
 int with_amt,cc,ch;
 
@@ -39,24 +41,13 @@ int main(){
 	char filename[50],phone[50],password[50],phone2[50];
 	FILE *fp;
 	int opt,choice;
-	int amount;
+	int amount,acc;
 	char cont = 'y';
-	FILE *ptr = fopen("userAccount.txt", "w");
-
-    int ch;
-    printf("\n\t\t\t\t\t****BANKING MANAGEMENT SYSTEM****\t\t\t\t\t");
-    printf("\n\n\t\t\t\t\tEnter your name : ");
-    scanf("%s",&name);
-    fprintf(ptr, "\n\t\t\t\t\tName : %s\n", name);
-    printf("\n\t\t\t\t\tEnter your account no. : ");
-    scanf("%d", &acc_no);
-    fprintf(ptr, "\n\t\t\t\t\tAccount no. : %d", acc_no);
-
-    fclose(ptr);
+	
     system("cls");
 	jump:
 
-    printf("\n\t\t\t\t\t****BANKING MANAGEMENT SYSTEM****\t\t\t\t\t");
+    printf("\n\t\t\t\t\t***BANKING MANAGEMENT SYSTEM***\t\t\t\t\t");
 	printf("\n\n\t\t\t\t\ 1.Register your account\t\t\t\t");
 	printf("\n\n\t\t\t\t\ 2.Login to your account\t\t\t\t");
 
@@ -65,8 +56,10 @@ int main(){
 	system("cls");
 	if(opt == 1){
 		system("cls");
+		printf("\n\t\t\t\t\tEnter your name:\t");
+		scanf("\n\t\t\t\t\t%s",name);
 		printf("\n\t\t\t\t\tEnter your account number:\t");
-		scanf("\n\t\t\t\t\t%s",user.ac);
+		scanf("\n\t\t\t\t\t%s",ac);
 		printf("\n\t\t\t\t\tEnter your phone number:\t");
 		scanf("\n\t\t\t\t\t%s",user.phone);
 		printf("\n\t\t\t\t\tEnter your new password:\t");
@@ -77,6 +70,8 @@ int main(){
 		fwrite(&user,sizeof(user),1,fp);
 		if(fwrite != 0){
 			printf("\n\t\t\t\t\tSuccesfully registered\n\n\n");
+			getch();
+			system("cls");
 
 			goto jump;
 		}
@@ -143,7 +138,7 @@ int main(){
 
 
         default:
-            printf("\n\t\t\t\t\t****Invalid choice****");
+            printf("\n\t\t\t\t\t**Invalid choice");
         }
 				printf("\n\n\t\t\t\t\tDo you want to continue?[y/n]:\t");
 				scanf("\n\t\t\t\t\t%s",&cont);
@@ -153,7 +148,7 @@ int main(){
 				printf("\n\t\t\t\t\tInvalid password");
 			}
 		}
-		printf("\n\n\t\t\t\t\t***Thank you for banking ***\n\n");
+		printf("\n\n\t\t\t\t\t*Thank you for banking *\n\n");
 	}
 
 	return 0;
@@ -164,12 +159,12 @@ void deposit_money()
     time_t tm;
     time(&tm);
     FILE *ptr = fopen("userAccount.txt", "w");
-    printf("\n\t\t\t\t\t*****DEPOSITING MONEY*****\n");
+    printf("\n\t\t\t\t\t*DEPOSITING MONEY*\n");
     divider();
     printf("\n\n\t\t\t\t\tEnter the amount you want to deposit:");
     scanf("%d", &dip_amt);
     amt += dip_amt;
-    printf("\n\t\t\t\t\t****Money Deposited****\n");
+    printf("\n\t\t\t\t\t**Money Deposited\n");
     printf("\n\t\t\t\t\tNow balance : %d\n", amt);
     fprintf(ptr, "\n\n\t\t\t\t\tTk%d had been deposited to your account \n", dip_amt);
     fprintf(ptr, "\n\t\t\t\t\tDate/Time of transaction :  %s\n", ctime(&tm));
@@ -188,7 +183,7 @@ void withdraw_money()
     time_t tm;
     time(&tm);
     FILE *ptr = fopen("userAccount.txt", "w");
-    printf("\n\t\t\t\t\t*****WITHDRAWING MONEY*****\n");
+    printf("\n\t\t\t\t\t*WITHDRAWING MONEY*\n");
     divider();
 
     printf("\n\n\t\t\t\t\tEnter the amount you want to withdraw:");
@@ -196,12 +191,12 @@ void withdraw_money()
 
     if (amt < with_amt)
     {
-        printf("\n\t\t\t\t\t****Insufficient balance****\n");
+        printf("\n\t\t\t\t\t**Insufficient balance\n");
     }
     else
     {
         amt = amt - with_amt;
-        printf("\n\t\t\t\t\t*****Money withdrawn*****\n");
+        printf("\n\t\t\t\t\t*Money withdrawn*\n");
         printf("\n\t\t\t\t\tCurrent balance : %d\n", amt);
         fprintf(ptr, "\n\n\t\t\t\t\tTk%d had been withdrawn from your account \n", with_amt);
         fprintf(ptr, "\n\t\t\t\t\tDate/Time of transaction :  %s\n", ctime(&tm));
@@ -221,24 +216,24 @@ void transfer_money()
     time_t tm;
     time(&tm);
     FILE *ptr = fopen("userAccount.txt", "w");
-    printf("\n\t\t\t\t\t*****TRANSFERRING MONEY*****\n");
+    printf("\n\t\t\t\t\t*TRANSFERRING MONEY*\n");
     divider();
 
     printf("\n\n\t\t\t\t\tEnter the account no. in which you want to transfer the money : ");
-    scanf("\n\t\t\t\t\t%d", &ac);
+    scanf("\n\t\t\t\t\t%d", &acc);
     printf("\n\n\t\t\t\t\tEnter the amount you want to transfer: ");
     scanf("\n\t\t\t\t\t%d", &trans_amt);
 
     if (amt < trans_amt)
     {
-        printf("\n\t\t\t\t\t****You have not sufficient balance****\n");
+        printf("\n\t\t\t\t\t**You have not sufficient balance\n");
     }
     else
     {
         amt = amt - trans_amt;
-        printf("\n\t\t\t\t\t****Money Transferred****\n");
+        printf("\n\t\t\t\t\t**Money Transferred\n");
         printf("\n\t\t\t\t\tCurrent balance : %d\n", amt);
-        fprintf(ptr, "\n\n\t\t\t\t\tTk%d had been transferred from your account to %d\n", trans_amt, ac);
+        fprintf(ptr, "\n\n\t\t\t\t\tTk%d had been transferred from your account to %d\n", trans_amt, acc);
         fprintf(ptr, "\n\t\t\t\t\tDate/Time of transaction :  %s\n", ctime(&tm));
         count++;
     }
@@ -255,7 +250,7 @@ void checkDetail()
      printf("\n\t\t\t\t\tACCOUNT DETAILS\n");
     divider();
     printf("\n\n\t\t\t\t\tName : %s\n", name);
-    printf("\n\t\t\t\t\tAccount No. : %d\n", acc_no);
+    printf("\n\t\t\t\t\tAccount No. : %s\n", ac);
     printf("\n\t\t\t\t\tTotal balance = %d\n ", amt);
 
     printf("\n\n\n\t\t\t\t\tPress any key to exit.....");
@@ -271,11 +266,11 @@ void transaction_details()
     FILE *ptr;
     ptr = fopen("userAccount.txt", "r");
     char c = fgetc(ptr);
-    if (c == EOF)
+    if (count==0)
     {
         printf("\n\t\t\t\t\tTRANSACTION DETAILS\n");
         divider();
-        printf("\n\n\t\t\t\t\t*******NO RECENT TRANSACTION*******\n");
+        printf("\n\n\t\t\t\t\t***NO RECENT TRANSACTION*\n");
     }
     else
     {
@@ -296,7 +291,7 @@ void LastDetail()
     printf("\n\t\t\t\t\tACCOUNT DETAILS\n");
     divider();
     printf("\n\n\t\t\t\t\tName : %s\n", name);
-    printf("\n\t\t\t\t\tAccount No. : %d\n", acc_no);
+    printf("\n\t\t\t\t\tAccount No. : %s\n", ac);
     printf("\n\t\t\t\t\tTotal balance = %d\n ", amt);
 
     printf("\n\n\n\t\t\t\t\tPress any key to exit.....");
