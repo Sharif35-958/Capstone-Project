@@ -103,9 +103,10 @@ int main(){
     printf("\n\t\t\t\t\t5.Transaction details\n");
     //printf("6.Back\n");
     printf("\n\t\t\t\t\t6.Exit\n");
-				scanf("\n\t\t\t\t\t%d",&choice);
-				switch(choice){
-					 case 1:
+    scanf("\n\t\t\t\t\t%d",&choice);
+	switch(choice)
+	{
+	case 1:
             system("cls");
             deposit_money();
             break;
@@ -138,7 +139,7 @@ int main(){
 
 
         default:
-            printf("\n\t\t\t\t\t**Invalid choice");
+            printf("\n\t\t\t\t\t**Invalid choice**");
         }
 				printf("\n\n\t\t\t\t\tDo you want to continue?[y/n]:\t");
 				scanf("\n\t\t\t\t\t%s",&cont);
@@ -148,7 +149,7 @@ int main(){
 				printf("\n\t\t\t\t\tInvalid password");
 			}
 		}
-		printf("\n\n\t\t\t\t\t*Thank you for banking *\n\n");
+		printf("\n\n\t\t\t\t\t**Thank you for banking**\n\n");
 	}
 
 	return 0;
@@ -159,7 +160,7 @@ void deposit_money()
     time_t tm;
     time(&tm);
     FILE *ptr = fopen("userAccount.txt", "w");
-    printf("\n\t\t\t\t\t*DEPOSITING MONEY*\n");
+    printf("\n\t\t\t\t\t**DEPOSITING MONEY**\n");
     divider();
     printf("\n\n\t\t\t\t\tEnter the amount you want to deposit:");
     scanf("%d", &dip_amt);
@@ -183,7 +184,7 @@ void withdraw_money()
     time_t tm;
     time(&tm);
     FILE *ptr = fopen("userAccount.txt", "w");
-    printf("\n\t\t\t\t\t*WITHDRAWING MONEY*\n");
+    printf("\n\t\t\t\t\t**WITHDRAWING MONEY**\n");
     divider();
 
     printf("\n\n\t\t\t\t\tEnter the amount you want to withdraw:");
@@ -191,7 +192,7 @@ void withdraw_money()
 
     if (amt < with_amt)
     {
-        printf("\n\t\t\t\t\t**Insufficient balance\n");
+        printf("\n\t\t\t\t\t**Insufficient balance**\n");
     }
     else
     {
@@ -216,7 +217,7 @@ void transfer_money()
     time_t tm;
     time(&tm);
     FILE *ptr = fopen("userAccount.txt", "w");
-    printf("\n\t\t\t\t\t*TRANSFERRING MONEY*\n");
+    printf("\n\t\t\t\t\t**TRANSFERRING MONEY**\n");
     divider();
 
     printf("\n\n\t\t\t\t\tEnter the account no. in which you want to transfer the money : ");
@@ -231,7 +232,7 @@ void transfer_money()
     else
     {
         amt = amt - trans_amt;
-        printf("\n\t\t\t\t\t**Money Transferred\n");
+        printf("\n\t\t\t\t\t**Money Transferred**\n");
         printf("\n\t\t\t\t\tCurrent balance : %d\n", amt);
         fprintf(ptr, "\n\n\t\t\t\t\tTk%d had been transferred from your account to %d\n", trans_amt, acc);
         fprintf(ptr, "\n\t\t\t\t\tDate/Time of transaction :  %s\n", ctime(&tm));
@@ -270,14 +271,14 @@ void transaction_details()
     {
         printf("\n\t\t\t\t\tTRANSACTION DETAILS\n");
         divider();
-        printf("\n\n\t\t\t\t\t***NO RECENT TRANSACTION*\n");
+        printf("\n\n\t\t\t\t\t***NO RECENT TRANSACTION***\n");
     }
     else
     {
         printf("\n\t\t\t\t\tTRANSACTION DETAILS\n");
         divider();
         printf("\n\n\t\t\t\t\t%d transactions have been made from your account \n", count);
-        while (c != EOF) // EOF=End of file
+        while (c != EOF) 
         {
             printf("%c", c);
             c = fgetc(ptr);
